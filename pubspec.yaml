@@ -35,4 +35,5 @@ flutter:
   - images/status_ic_state_empty.png
   - images/status_ic_state_error.png
   - images/status_ic_state_loading.png
+  - images/avatar.png
 

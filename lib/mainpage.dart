@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app_wanandroid/ui/pager/drawerpage.dart';
 import 'package:flutter_app_wanandroid/ui/pager/homepage.dart';
 import 'package:flutter_app_wanandroid/ui/pager/navigationpage.dart';
 import 'package:flutter_app_wanandroid/ui/pager/officialaccountspage.dart';
@@ -13,6 +14,7 @@ class MainPage extends StatefulWidget {
 
 class MainPageState extends State<MainPage> {
   int _selectedIndex = 0; //默认选中项第一个
+  DateTime _lastClick; //上次点击的时间
   final appBarTitle = [
     "玩android",
     "android体系",
@@ -36,6 +38,7 @@ class MainPageState extends State<MainPage> {
       //拦截返回键
       onWillPop: _onWillPop,
       child: Scaffold(
+        drawer: DrawerPage(),
         appBar: AppBar(
           title: Text(appBarTitle[_selectedIndex]),
           centerTitle: true,
@@ -83,7 +86,13 @@ class MainPageState extends State<MainPage> {
     });
   }
 
-  Future<bool> _onWillPop() {
-    showToast("再按一次我就退出了😯");
+  Future<bool> _onWillPop() async{
+    if (_lastClick == null ||
+        DateTime.now().difference(_lastClick) > Duration(seconds: 1)) {
+      _lastClick = DateTime.now(); //如果点击间隔时间大于1秒，则重新计算
+      showToast("再按一次就退出了😯");
+      return false;
+    }
+    return true;
   }
 }
