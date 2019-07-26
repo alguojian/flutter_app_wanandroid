@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:oktoast/oktoast.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 
 abstract class BasePageWidget extends StatefulWidget {
   BasePageWidgetState basePageWidgetState;
@@ -81,10 +82,19 @@ abstract class BasePageWidgetState<T extends BasePageWidget> extends State<T> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Image(
-              image: AssetImage("images/status_ic_state_loading.png"),
-              width: 100,
-              height: 100,
+            // Image(
+            //   image: AssetImage("images/status_ic_state_loading.png"),
+            //   width: 100,
+            //   height: 100,
+            // ),
+
+            SpinKitFadingCircle(
+              itemBuilder: (_, int index) {
+                return DecoratedBox(
+                  decoration: BoxDecoration(
+                      color: index.isEven ? Colors.red : Colors.green),
+                );
+              },
             ),
 
             Padding(
