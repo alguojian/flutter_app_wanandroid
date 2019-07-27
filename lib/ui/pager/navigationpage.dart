@@ -11,18 +11,15 @@ class NavigationPage extends BasePageWidget {
 class NavigationPageState extends BasePageWidgetState<NavigationPage> {
   @override
   AppBar getAppBar() {
-    // TODO: implement getAppBar
     return null;
   }
 
   @override
   Widget getContentWidget(BuildContext buildContext) {
-    // TODO: implement getContentWidget
     return null;
   }
 
   @override
   void onRetryListener() {
-    // TODO: implement onRetryListener
   }
 }

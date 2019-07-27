@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:oktoast/oktoast.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 
+// ignore: must_be_immutable
 abstract class BasePageWidget extends StatefulWidget {
   BasePageWidgetState basePageWidgetState;
   @override
@@ -39,9 +40,9 @@ abstract class BasePageWidgetState<T extends BasePageWidget> extends State<T> {
         child: Stack(
           children: <Widget>[
             getContentWidget(context),
-            _getBaseErrorWidget(),
-            _getBaseEmptyWidget(),
-            _getBaseLoadingWidget(),
+//            _getBaseErrorWidget(),
+//            _getBaseEmptyWidget(),
+//            _getBaseLoadingWidget(),
           ],
         ),
       ),
@@ -160,8 +161,8 @@ abstract class BasePageWidgetState<T extends BasePageWidget> extends State<T> {
     return Container(
       padding: const EdgeInsets.fromLTRB(0, 0, 0, 80),
       color: Colors.white,
-      width: double.infinity,
-      height: double.infinity,
+      width: 300,
+      height: 300,
       child: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,

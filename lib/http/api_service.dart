@@ -1,21 +1,24 @@
 import 'package:dio/dio.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_app_wanandroid/bean/article_bean.dart';
-import 'package:flutter_app_wanandroid/bean_factory.dart';
 import 'package:flutter_app_wanandroid/http/api.dart';
 import 'package:flutter_app_wanandroid/http/dio_manager.dart';
 import 'package:flutter_app_wanandroid/utils/userinfoutils.dart';
 
+
 class ApiService {
   ///首页文章列表
-  void getArticleList(Function callback, Function errorBack, int page) async {
-    Dio dio = await DioManager.singleton.dio;
-    dio.get(Api.HOME_ARTICLE_LIST + "$page/json", options: _getOptions()).then((onValue) {
-      print("-----------"+onValue.data);
-      callback(BeanFactory.generateOBJ<ArticleBean>(onValue.data));
-    }).catchError((onError) {
-      errorBack(onError);
-      print("------------"+onError.toString());
-    });
+  Future<ArticleBean> getArticleList(int page) async {
+    Dio dio = DioManager.singleton.dio;
+    try{
+      Response response=await dio.get(Api.HOME_ARTICLE_LIST + "$page/json",options: _getOptions());
+      debugPrint("-----------" + response.data.toString());
+      return ArticleBean.fromJson(response.data);
+    }on DioError catch(e){
+      debugPrint("-----------" + e.toString());
+      e.type=DioErrorType.CANCEL;
+    }
+    return null;
   }
 
   Options _getOptions() {

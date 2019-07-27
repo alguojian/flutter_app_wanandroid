@@ -10,18 +10,15 @@ class ProjectsPage extends BasePageWidget {
 class ProjectsPageState extends BasePageWidgetState<ProjectsPage> {
   @override
   AppBar getAppBar() {
-    // TODO: implement getAppBar
     return null;
   }
 
   @override
   Widget getContentWidget(BuildContext buildContext) {
-    // TODO: implement getContentWidget
     return null;
   }
 
   @override
   void onRetryListener() {
-    // TODO: implement onRetryListener
   }
 }

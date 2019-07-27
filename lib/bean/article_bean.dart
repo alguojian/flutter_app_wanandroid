@@ -1,169 +1,143 @@
-class ArticleBean {
-	ArticleData data;
-	int errorCode;
-	String errorMsg;
+import 'package:json_annotation/json_annotation.dart';
 
-	ArticleBean({this.data, this.errorCode, this.errorMsg});
+part 'article_bean.g.dart';
 
-	ArticleBean.fromJson(Map<String, dynamic> json) {
-		data = json['data'] != null ? new ArticleData.fromJson(json['data']) : null;
-		errorCode = json['errorCode'];
-		errorMsg = json['errorMsg'];
-	}
 
-	Map<String, dynamic> toJson() {
-		final Map<String, dynamic> data = new Map<String, dynamic>();
-		if (this.data != null) {
-      data['data'] = this.data.toJson();
-    }
-		data['errorCode'] = this.errorCode;
-		data['errorMsg'] = this.errorMsg;
-		return data;
-	}
+@JsonSerializable()
+class ArticleBean extends Object {
+
+  @JsonKey(name: 'data')
+  Data data;
+
+  @JsonKey(name: 'errorCode')
+  int errorCode;
+
+  @JsonKey(name: 'errorMsg')
+  String errorMsg;
+
+  ArticleBean(this.data,this.errorCode,this.errorMsg,);
+
+  factory ArticleBean.fromJson(Map<String, dynamic> srcJson) => _$ArticleBeanFromJson(srcJson);
+
+  Map<String, dynamic> toJson() => _$ArticleBeanToJson(this);
+
 }
 
-class ArticleData {
-	bool over;
-	int pageCount;
-	int total;
-	int curPage;
-	int offset;
-	int size;
-	List<ArticleDataData> datas;
 
-	ArticleData({this.over, this.pageCount, this.total, this.curPage, this.offset, this.size, this.datas});
+@JsonSerializable()
+class Data extends Object {
 
-	ArticleData.fromJson(Map<String, dynamic> json) {
-		over = json['over'];
-		pageCount = json['pageCount'];
-		total = json['total'];
-		curPage = json['curPage'];
-		offset = json['offset'];
-		size = json['size'];
-		if (json['datas'] != null) {
-			datas = new List<ArticleDataData>();(json['datas'] as List).forEach((v) { datas.add(new ArticleDataData.fromJson(v)); });
-		}
-	}
+  @JsonKey(name: 'curPage')
+  int curPage;
 
-	Map<String, dynamic> toJson() {
-		final Map<String, dynamic> data = new Map<String, dynamic>();
-		data['over'] = this.over;
-		data['pageCount'] = this.pageCount;
-		data['total'] = this.total;
-		data['curPage'] = this.curPage;
-		data['offset'] = this.offset;
-		data['size'] = this.size;
-		if (this.datas != null) {
-      data['datas'] =  this.datas.map((v) => v.toJson()).toList();
-    }
-		return data;
-	}
+  @JsonKey(name: 'datas')
+  List<Datas> datas;
+
+  @JsonKey(name: 'offset')
+  int offset;
+
+  @JsonKey(name: 'over')
+  bool over;
+
+  @JsonKey(name: 'pageCount')
+  int pageCount;
+
+  @JsonKey(name: 'size')
+  int size;
+
+  @JsonKey(name: 'total')
+  int total;
+
+  Data(this.curPage,this.datas,this.offset,this.over,this.pageCount,this.size,this.total,);
+
+  factory Data.fromJson(Map<String, dynamic> srcJson) => _$DataFromJson(srcJson);
+
+  Map<String, dynamic> toJson() => _$DataToJson(this);
+
 }
 
-class ArticleDataData {
-	String superChapterName;
-	int publishTime;
-	int visible;
-	String niceDate;
-	String projectLink;
-	String author;
-	String prefix;
-	int zan;
-	String origin;
-	String chapterName;
-	String link;
-	String title;
-	int type;
-	int userId;
-	List<ArticleDataDatasTag> tags;
-	String apkLink;
-	String envelopePic;
-	int chapterId;
-	int superChapterId;
-	int id;
-	bool fresh;
-	bool collect;
-	int courseId;
-	String desc;
 
-	ArticleDataData({this.superChapterName, this.publishTime, this.visible, this.niceDate, this.projectLink, this.author, this.prefix, this.zan, this.origin, this.chapterName, this.link, this.title, this.type, this.userId, this.tags, this.apkLink, this.envelopePic, this.chapterId, this.superChapterId, this.id, this.fresh, this.collect, this.courseId, this.desc});
+@JsonSerializable()
+class Datas extends Object {
 
-	ArticleDataData.fromJson(Map<String, dynamic> json) {
-		superChapterName = json['superChapterName'];
-		publishTime = json['publishTime'];
-		visible = json['visible'];
-		niceDate = json['niceDate'];
-		projectLink = json['projectLink'];
-		author = json['author'];
-		prefix = json['prefix'];
-		zan = json['zan'];
-		origin = json['origin'];
-		chapterName = json['chapterName'];
-		link = json['link'];
-		title = json['title'];
-		type = json['type'];
-		userId = json['userId'];
-		if (json['tags'] != null) {
-			tags = new List<ArticleDataDatasTag>();(json['tags'] as List).forEach((v) { tags.add(new ArticleDataDatasTag.fromJson(v)); });
-		}
-		apkLink = json['apkLink'];
-		envelopePic = json['envelopePic'];
-		chapterId = json['chapterId'];
-		superChapterId = json['superChapterId'];
-		id = json['id'];
-		fresh = json['fresh'];
-		collect = json['collect'];
-		courseId = json['courseId'];
-		desc = json['desc'];
-	}
+  @JsonKey(name: 'apkLink')
+  String apkLink;
 
-	Map<String, dynamic> toJson() {
-		final Map<String, dynamic> data = new Map<String, dynamic>();
-		data['superChapterName'] = this.superChapterName;
-		data['publishTime'] = this.publishTime;
-		data['visible'] = this.visible;
-		data['niceDate'] = this.niceDate;
-		data['projectLink'] = this.projectLink;
-		data['author'] = this.author;
-		data['prefix'] = this.prefix;
-		data['zan'] = this.zan;
-		data['origin'] = this.origin;
-		data['chapterName'] = this.chapterName;
-		data['link'] = this.link;
-		data['title'] = this.title;
-		data['type'] = this.type;
-		data['userId'] = this.userId;
-		if (this.tags != null) {
-      data['tags'] =  this.tags.map((v) => v.toJson()).toList();
-    }
-		data['apkLink'] = this.apkLink;
-		data['envelopePic'] = this.envelopePic;
-		data['chapterId'] = this.chapterId;
-		data['superChapterId'] = this.superChapterId;
-		data['id'] = this.id;
-		data['fresh'] = this.fresh;
-		data['collect'] = this.collect;
-		data['courseId'] = this.courseId;
-		data['desc'] = this.desc;
-		return data;
-	}
+  @JsonKey(name: 'author')
+  String author;
+
+  @JsonKey(name: 'chapterId')
+  int chapterId;
+
+  @JsonKey(name: 'chapterName')
+  String chapterName;
+
+  @JsonKey(name: 'collect')
+  bool collect;
+
+  @JsonKey(name: 'courseId')
+  int courseId;
+
+  @JsonKey(name: 'desc')
+  String desc;
+
+  @JsonKey(name: 'envelopePic')
+  String envelopePic;
+
+  @JsonKey(name: 'fresh')
+  bool fresh;
+
+  @JsonKey(name: 'id')
+  int id;
+
+  @JsonKey(name: 'link')
+  String link;
+
+  @JsonKey(name: 'niceDate')
+  String niceDate;
+
+  @JsonKey(name: 'origin')
+  String origin;
+
+  @JsonKey(name: 'prefix')
+  String prefix;
+
+  @JsonKey(name: 'projectLink')
+  String projectLink;
+
+  @JsonKey(name: 'publishTime')
+  int publishTime;
+
+  @JsonKey(name: 'superChapterId')
+  int superChapterId;
+
+  @JsonKey(name: 'superChapterName')
+  String superChapterName;
+
+  @JsonKey(name: 'tags')
+  List<dynamic> tags;
+
+  @JsonKey(name: 'title')
+  String title;
+
+  @JsonKey(name: 'type')
+  int type;
+
+  @JsonKey(name: 'userId')
+  int userId;
+
+  @JsonKey(name: 'visible')
+  int visible;
+
+  @JsonKey(name: 'zan')
+  int zan;
+
+  Datas(this.apkLink,this.author,this.chapterId,this.chapterName,this.collect,this.courseId,this.desc,this.envelopePic,this.fresh,this.id,this.link,this.niceDate,this.origin,this.prefix,this.projectLink,this.publishTime,this.superChapterId,this.superChapterName,this.tags,this.title,this.type,this.userId,this.visible,this.zan,);
+
+  factory Datas.fromJson(Map<String, dynamic> srcJson) => _$DatasFromJson(srcJson);
+
+  Map<String, dynamic> toJson() => _$DatasToJson(this);
+
 }
 
-class ArticleDataDatasTag {
-	String name;
-	String url;
-
-	ArticleDataDatasTag({this.name, this.url});
-
-	ArticleDataDatasTag.fromJson(Map<String, dynamic> json) {
-		name = json['name'];
-		url = json['url'];
-	}
-
-	Map<String, dynamic> toJson() {
-		final Map<String, dynamic> data = new Map<String, dynamic>();
-		data['name'] = this.name;
-		data['url'] = this.url;
-		return data;
-	}
-}
+  

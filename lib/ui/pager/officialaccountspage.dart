@@ -1,7 +1,8 @@
-import 'package:flutter/src/material/app_bar.dart';
 import 'package:flutter/src/widgets/framework.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_app_wanandroid/base/BasePageWidget.dart';
 
+// ignore: must_be_immutable
 class OfficialAccountsPage extends BasePageWidget {
   @override
   BasePageWidgetState<BasePageWidget> createPageState() =>
@@ -12,18 +13,17 @@ class OfficialAccountsPageState
     extends BasePageWidgetState<OfficialAccountsPage> {
   @override
   AppBar getAppBar() {
-    // TODO: implement getAppBar
-    return null;
+    return AppBar(
+      title: Text("da"),
+    );
   }
 
   @override
   Widget getContentWidget(BuildContext buildContext) {
-    // TODO: implement getContentWidget
     return null;
   }
 
   @override
   void onRetryListener() {
-    // TODO: implement onRetryListener
   }
 }
